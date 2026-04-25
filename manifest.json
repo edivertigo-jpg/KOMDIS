@@ -1,6 +1,6 @@
 {
-  "name": "Dashboard Komite Medis SHND",
-  "short_name": "Komite Medis",
+  "name": "KOMDIS SHND",
+  "short_name": "KOMDIS SHND",
   "description": "Dashboard Tertib Administrasi Komite Medis RSU Surya Husadha Nusa Dua",
   "start_url": "/KOMDIS/",
   "scope": "/KOMDIS/",
