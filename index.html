@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard Komite Medis SHND 2026</title>
 
 <!-- ═══════════ PWA META TAGS ═══════════ -->
@@ -46,7 +46,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:no
 
 /* ── HEADER ── */
 header{position:sticky;top:0;z-index:300;background:#fffffff5;backdrop-filter:blur(12px);border-bottom:2px solid #1a5fa820;box-shadow:0 2px 12px rgba(26,95,168,.08)}
-.hdr{max-width:1500px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px;padding:0 20px;gap:12px}
+.hdr{max-width:1500px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;min-height:58px;padding:8px 20px;gap:8px}
 .brand{display:flex;align-items:center;gap:10px}
 .brand-ico{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .brand h1{font-size:13px;font-weight:800;line-height:1.2}
@@ -246,107 +246,42 @@ td.mono{font-family:var(--mono);font-size:10px;color:#5a7a95}
 
 
 
-/* ══════════════════════════════════════════
-   MOBILE RESPONSIVE — no overflow
-   ══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; }
-
-html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+html, body { overflow-x: hidden; max-width: 100vw; }
 
 @media (max-width: 768px) {
-
-  /* ── Header ── */
   header { position: sticky; top: 0; z-index: 300; }
   .hdr {
-    height: auto;
-    padding: 8px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-    max-width: 100%;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 8px 12px !important;
+    gap: 4px !important;
+    min-height: unset !important;
   }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    min-width: 0;
-    width: 100%;
-  }
-  .brand img { height: 28px; flex-shrink: 0; }
-  .brand > div:nth-child(2) { width: 1px; height: 28px; flex-shrink: 0; }
-  .brand h1 { font-size: 13px; white-space: nowrap; }
-  .brand p  { font-size: 9px; }
-  .live { padding: 2px 6px; font-size: 8px; white-space: nowrap; margin-left: auto; }
-  .hdr-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 6px;
-    width: 100%;
-  }
+  .brand { display: flex; align-items: center; gap: 6px; width: 100%; }
+  .brand img { height: 28px !important; }
+  .brand h1  { font-size: 12px !important; white-space: nowrap; }
+  .brand p   { font-size: 9px !important; }
+  .live { margin-left: auto !important; font-size: 8px !important; padding: 2px 7px !important; white-space: nowrap; }
+  .hdr-right { display: flex !important; justify-content: flex-end !important; width: 100% !important; gap: 6px !important; }
   .btn { font-size: 11px; padding: 7px 12px; white-space: nowrap; }
-  #pwa-install-btn { font-size: 11px; padding: 7px 12px; }
-
-  /* ── Main ── */
-  main { padding: 8px; max-width: 100%; }
-
-  /* ── Stats: 2 kolom ── */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 7px;
-    margin-bottom: 12px;
-  }
-  .stat { padding: 10px 12px; }
-  .stat-val { font-size: 20px; }
-  .stat-lbl { font-size: 8.5px; }
-  .stat-sub { font-size: 8.5px; }
-
-  /* ── Filter bar ── */
-  .fbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
-    padding: 8px 10px;
-  }
-  .fbar label { display: none; }
-  .fi, .fi-s { width: 100%; min-width: unset; font-size: 12px; }
-
-  /* ── Table card ── */
-  .tcard-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    padding: 10px 12px;
-  }
-  .scroll-x {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    max-width: 100%;
-  }
-  table { min-width: 580px; font-size: 10px; }
-  th, td { padding: 6px 8px; font-size: 10px; }
-
-  /* ── Modal full width ── */
-  .modal-box {
-    width: 96vw !important;
-    max-width: 96vw !important;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-
-  /* ── Birthday banner ── */
-  #birthdayBanner { padding: 10px 12px; }
+  #pwa-install-btn { font-size: 11px !important; padding: 7px 10px !important; }
+  main { padding: 8px !important; }
+  .stats { grid-template-columns: repeat(2, 1fr) !important; gap: 7px !important; }
+  .stat { padding: 10px 12px !important; }
+  .stat-val { font-size: 22px !important; }
+  .stat-lbl, .stat-sub { font-size: 8.5px !important; }
+  .fbar { flex-direction: column !important; gap: 5px !important; padding: 8px 10px !important; }
+  .fi, .fi-s { width: 100% !important; min-width: unset !important; }
+  .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 560px; }
+  th, td { padding: 6px 8px !important; font-size: 10px !important; }
+  .tcard-head { flex-direction: column !important; align-items: flex-start !important; gap: 5px !important; }
+  .modal-box { width: 96vw !important; max-width: 96vw !important; max-height: 90vh !important; overflow-y: auto !important; }
 }
-
 @media (max-width: 400px) {
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .brand h1 { font-size: 11px; }
-  .btn { font-size: 9px; padding: 5px 7px; }
+  .stats { grid-template-columns: repeat(2, 1fr) !important; }
+  .brand h1 { font-size: 11px !important; }
 }
 </style>
 </head>
