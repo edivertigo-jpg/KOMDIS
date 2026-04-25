@@ -257,12 +257,10 @@ td.mono{font-family:var(--mono);font-size:10px;color:#5a7a95}
       <h1 style="font-size:15px;font-weight:800;color:#1a5fa8;line-height:1.2">Tertib Administrasi Komite Medis</h1>
       <p style="font-size:10px;color:#7a9bb5;margin-top:1px">RSU Surya Husadha Nusa Dua · Komite Medis · 2026</p>
     </div>
+    <div class="live" style="margin-top:3px"><div class="dot"></div><span id="liveLabel" style="font-size:9px">Memuat…</span></div>
   </div>
   <div class="hdr-right">
-    <div class="live"><div class="dot"></div><span id="liveLabel">Memuat…</span></div>
     <button class="btn btn-violet" onclick="openAdd()">＋ Tambah Dokter</button>
-    <button class="btn btn-ghost" onclick="fetchData()">🔄 Refresh</button>
-    <a href="https://drive.google.com/drive/folders/1yktBQ4EBxxFD-gTCgDNhhPavWf5GOSyC" target="_blank" class="btn btn-ghost">📁 Drive</a>
   </div>
 </div>
 </header>
@@ -1523,6 +1521,19 @@ window.addEventListener('beforeinstallprompt', e => {
     if (hdrRight) hdrRight.prepend(btn);
   }
 });
+
+// ── Fallback: tampilkan panduan install manual kalau prompt tidak muncul dalam 5 detik ──
+setTimeout(() => {
+  if (!deferredPrompt && !window.matchMedia('(display-mode: standalone)').matches) {
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isChrome = /chrome/i.test(navigator.userAgent) && !isIOS;
+    if (isChrome && !document.getElementById('pwa-install-btn')) {
+      // Chrome: mungkin sudah terinstall atau kriteria belum terpenuhi
+      // Tampilkan info di console untuk debug
+      console.log('[PWA] beforeinstallprompt belum fired. Pastikan: HTTPS, manifest valid, SW aktif, belum installed.');
+    }
+  }
+}, 5000);
 
 window.addEventListener('appinstalled', () => {
   deferredPrompt = null;
