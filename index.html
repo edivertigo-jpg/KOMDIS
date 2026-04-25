@@ -6,7 +6,7 @@
 <title>Dashboard Komite Medis SHND 2026</title>
 
 <!-- ═══════════ PWA META TAGS ═══════════ -->
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/KOMDIS/manifest.json">
 <meta name="theme-color" content="#1a5fa8">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -269,15 +269,6 @@ td.mono{font-family:var(--mono);font-size:10px;color:#5a7a95}
 
 <!-- ═══ MAIN ═══════════════════════════════════════════════ -->
 <main>
-
-<div class="qlinks">
-  <a class="qlink" href="https://docs.google.com/spreadsheets/d/1TCTqrThVQcXxxtSZBP-g71cxKXOgo2lEAvAnPz7Ofx0/edit" target="_blank">📊 Google Spreadsheet</a>
-  <a class="qlink" href="https://drive.google.com/drive/folders/1yktBQ4EBxxFD-gTCgDNhhPavWf5GOSyC" target="_blank">📁 Drive Utama Komite Medis</a>
-  <a class="qlink" href="https://drive.google.com/drive/folders/1cHKCxx_YRhH_19C4YNfg4mzMVS299BlH" target="_blank">👤 Folder Profil</a>
-  <a class="qlink" href="https://drive.google.com/drive/folders/1GA0ETJLz1GZKK6aGTAQgjF3QEJi7MgUB" target="_blank">📋 Folder SIP</a>
-  <a class="qlink" href="https://drive.google.com/drive/folders/1l32CJYA-A24hMX-bgluxm0KOj_UetcS8" target="_blank">📄 Folder STR</a>
-  <a class="qlink" href="https://drive.google.com/drive/folders/1g38lJs6lDsnWKeuurYXUHynOT7XgyQIE" target="_blank">🏆 Folder RKK</a>
-</div>
 
 <!-- Birthday Banner -->
 <div id="birthdayBanner" style="display:none;background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1px solid #f9a8d4;border-radius:11px;padding:12px 18px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
@@ -1465,20 +1456,37 @@ setInterval(fetchData, 300000);
 // ═══════════════════════════════════════════════════════════
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('/KOMDIS/sw.js')
       .then(reg => {
         console.log('[PWA] SW terdaftar:', reg.scope);
-        setInterval(() => reg.update(), 60000);
+
+        // Cek update SW setiap 30 detik
+        setInterval(() => reg.update(), 30000);
+
+        // Kalau ada SW baru → langsung skip waiting & reload otomatis
         reg.addEventListener('updatefound', () => {
           const nw = reg.installing;
           nw.addEventListener('statechange', () => {
-            if (nw.state === 'installed' && navigator.serviceWorker.controller) {
-              showToast('\u{1F504} Versi baru tersedia \u2014 refresh untuk update');
+            if (nw.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                // Ada versi baru — suruh SW lama mundur, reload halaman
+                nw.postMessage({ type: 'SKIP_WAITING' });
+              }
             }
           });
         });
       })
       .catch(err => console.warn('[PWA] SW gagal:', err));
+
+    // Kalau SW baru sudah aktif → reload halaman otomatis
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        showToast('\u{1F504} Update tersedia \u2014 memuat ulang...');
+        setTimeout(() => window.location.reload(), 1500);
+      }
+    });
 
     window.addEventListener('online',  () => { showToast('\u2705 Koneksi kembali \u2014 memuat data...'); setTimeout(fetchData, 1000); });
     window.addEventListener('offline', () => { showToast('\u{1F4F4} Offline \u2014 menampilkan data terakhir', true); });

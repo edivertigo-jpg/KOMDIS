@@ -2,8 +2,8 @@
   "name": "Dashboard Komite Medis SHND",
   "short_name": "Komite Medis",
   "description": "Dashboard Tertib Administrasi Komite Medis RSU Surya Husadha Nusa Dua",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/KOMDIS/",
+  "scope": "/KOMDIS/",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#f0f4f8",
@@ -11,62 +11,71 @@
   "lang": "id",
   "icons": [
     {
-      "src": "icons/icon-72.png",
+      "src": "/KOMDIS/icons/icon-72.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-96.png",
+      "src": "/KOMDIS/icons/icon-96.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-128.png",
+      "src": "/KOMDIS/icons/icon-128.png",
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-144.png",
+      "src": "/KOMDIS/icons/icon-144.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-152.png",
+      "src": "/KOMDIS/icons/icon-152.png",
       "sizes": "152x152",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-192.png",
+      "src": "/KOMDIS/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-384.png",
+      "src": "/KOMDIS/icons/icon-384.png",
       "sizes": "384x384",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "/KOMDIS/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["medical", "productivity", "utilities"],
+  "categories": [
+    "medical",
+    "productivity",
+    "utilities"
+  ],
   "shortcuts": [
     {
       "name": "Lihat Data",
       "short_name": "Data",
       "description": "Buka tabel data komite medis",
-      "url": "/#tabel",
-      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+      "url": "/KOMDIS/#tabel",
+      "icons": [
+        {
+          "src": "/KOMDIS/icons/icon-96.png",
+          "sizes": "96x96"
+        }
+      ]
     }
   ]
 }
