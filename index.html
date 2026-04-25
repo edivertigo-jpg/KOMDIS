@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Dashboard Komite Medis SHND 2026</title>
 
 <!-- ═══════════ PWA META TAGS ═══════════ -->
@@ -244,57 +244,109 @@ td.mono{font-family:var(--mono);font-size:10px;color:#5a7a95}
   .stats{grid-template-columns:repeat(2,1fr)}
 }
 
-/* ══════════════════════════════════════════════
-   RESPONSIVE MOBILE — one screen, no side scroll
-   ══════════════════════════════════════════════ */
-@media (max-width: 768px) {
 
-  /* Header */
-  .hdr { height: auto; padding: 10px 12px; flex-wrap: nowrap; gap: 8px; }
-  .brand img { height: 32px; }
-  .brand h1 { font-size: 13px; }
-  .brand p  { font-size: 9px; }
-  .hdr-right { flex-shrink: 0; }
-  .btn { font-size: 11px; padding: 7px 10px; }
 
-  /* Prevent horizontal overflow */
-  body { overflow-x: hidden; }
-  main { padding: 10px; }
+/* ══════════════════════════════════════════
+   MOBILE RESPONSIVE — no overflow
+   ══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
 
-  /* Stats — 2 kolom di mobile */
-  .stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .stat { padding: 12px; }
-  .stat-val { font-size: 22px; }
-
-  /* Filter bar — stack vertical */
-  .fbar { flex-direction: column; align-items: stretch; gap: 6px; }
-  .fi { width: 100%; }
-  .fi-s { min-width: unset; }
-
-  /* Table — scroll horizontal terbatas, teks lebih kecil */
-  .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table { min-width: 600px; }
-  th, td { padding: 7px 8px; font-size: 10px; }
-
-  /* Table card header */
-  .tcard-head { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .tcard-meta { flex-wrap: wrap; }
-
-  /* Modal — full width */
-  .modal-box { width: 95vw !important; max-width: unset !important; margin: 10px auto; }
-
-  /* PWA install button */
-  #pwa-install-btn { font-size: 10px; padding: 6px 8px; }
-
-  /* Live badge di bawah brand — compact */
-  .live { padding: 3px 7px; font-size: 9px; }
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+
+  /* ── Header ── */
+  header { position: sticky; top: 0; z-index: 300; }
+  .hdr {
+    height: auto;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: nowrap;
+    max-width: 100%;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+  }
+  .brand img { height: 28px; flex-shrink: 0; }
+  .brand > div:nth-child(2) { width: 1px; height: 28px; flex-shrink: 0; }
+  .brand h1 { font-size: 12px; white-space: nowrap; }
+  .brand p  { font-size: 9px; }
+  .live { padding: 2px 6px; font-size: 8px; white-space: nowrap; }
+  .hdr-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .btn { font-size: 10px; padding: 6px 8px; white-space: nowrap; }
+  #pwa-install-btn { font-size: 10px; padding: 6px 8px; }
+
+  /* ── Main ── */
+  main { padding: 8px; max-width: 100%; }
+
+  /* ── Stats: 2 kolom ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+  .stat { padding: 10px 12px; }
+  .stat-val { font-size: 20px; }
+  .stat-lbl { font-size: 8.5px; }
+  .stat-sub { font-size: 8.5px; }
+
+  /* ── Filter bar ── */
+  .fbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    padding: 8px 10px;
+  }
+  .fbar label { display: none; }
+  .fi, .fi-s { width: 100%; min-width: unset; font-size: 12px; }
+
+  /* ── Table card ── */
+  .tcard-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 10px 12px;
+  }
+  .scroll-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  table { min-width: 580px; font-size: 10px; }
+  th, td { padding: 6px 8px; font-size: 10px; }
+
+  /* ── Modal full width ── */
+  .modal-box {
+    width: 96vw !important;
+    max-width: 96vw !important;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* ── Birthday banner ── */
+  #birthdayBanner { padding: 10px 12px; }
+}
+
+@media (max-width: 400px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
-  .hdr { padding: 8px 10px; }
-  .brand { gap: 7px; }
-  .brand img { height: 28px; }
+  .brand h1 { font-size: 11px; }
+  .btn { font-size: 9px; padding: 5px 7px; }
 }
 </style>
 </head>
