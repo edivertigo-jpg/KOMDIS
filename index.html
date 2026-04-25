@@ -264,10 +264,9 @@ html, body {
     height: auto;
     padding: 8px 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
     gap: 6px;
-    flex-wrap: nowrap;
     max-width: 100%;
   }
   .brand {
@@ -275,21 +274,22 @@ html, body {
     align-items: center;
     gap: 6px;
     min-width: 0;
-    flex: 1;
+    width: 100%;
   }
   .brand img { height: 28px; flex-shrink: 0; }
   .brand > div:nth-child(2) { width: 1px; height: 28px; flex-shrink: 0; }
-  .brand h1 { font-size: 12px; white-space: nowrap; }
+  .brand h1 { font-size: 13px; white-space: nowrap; }
   .brand p  { font-size: 9px; }
-  .live { padding: 2px 6px; font-size: 8px; white-space: nowrap; }
+  .live { padding: 2px 6px; font-size: 8px; white-space: nowrap; margin-left: auto; }
   .hdr-right {
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
+    justify-content: flex-end;
+    gap: 6px;
+    width: 100%;
   }
-  .btn { font-size: 10px; padding: 6px 8px; white-space: nowrap; }
-  #pwa-install-btn { font-size: 10px; padding: 6px 8px; }
+  .btn { font-size: 11px; padding: 7px 12px; white-space: nowrap; }
+  #pwa-install-btn { font-size: 11px; padding: 7px 12px; }
 
   /* ── Main ── */
   main { padding: 8px; max-width: 100%; }
@@ -364,7 +364,7 @@ html, body {
     </div>
     <div class="live" style="margin-top:3px"><div class="dot"></div><span id="liveLabel" style="font-size:9px">Memuat…</span></div>
   </div>
-  <div class="hdr-right">
+  <div class="hdr-right" id="hdrRight">
     <button class="btn btn-violet" onclick="openAdd()">＋ Tambah Dokter</button>
   </div>
 </div>
